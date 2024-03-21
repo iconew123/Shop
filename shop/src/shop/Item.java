@@ -4,6 +4,7 @@ public class Item {
 	private String name;
 	private int code;
 	private int price;
+	private int number;
 
 	public Item(String name, int code, int price) {
 		this.name = name;
@@ -29,5 +30,13 @@ public class Item {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	
+	public void setNumber(int number) {
+		this.number = number;
 	}
 }

@@ -1,16 +1,20 @@
 package shop;
 
+import java.util.ArrayList;
+
 public class User {
 	private String name;
 	private String id;
 	private String password;
 	private int money;
+	private Cart cart;
 
 	public User(String name, String id, String password) {
 		this.name = name;
 		this.id = id;
 		this.password = password;
 		money = 10000;
+		cart = new Cart();
 	}
 
 	public String getName() {

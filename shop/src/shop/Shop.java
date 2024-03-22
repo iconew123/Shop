@@ -379,7 +379,8 @@ public class Shop {
 	}
 
 	private void autoLoad() {
-
+		userManager.userAutoLoad();
+		itemManager.itemAutoLoad();
 	}
 
 	private void autoSave() {

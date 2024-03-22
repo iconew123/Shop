@@ -108,4 +108,25 @@ public class ItemManager {
 		fileManager.autoSaveItemList(textItem);
 	}
 
+	public void itemAutoLoad() {
+		if (fileManager.isExsistItemFile()) {
+			String[] loadData = fileManager.autoLoadItemData().split("\n");
+			for (int i = 0; i < loadData.length; i++) {
+				String[] oneLine = loadData[i].split("/");
+				Item item = loadItem(oneLine);
+				list.add(item);
+			}
+
+		} else
+			System.out.println("로드 파일이 없습니다.");
+	}
+
+	private Item loadItem(String[] oneLine) {
+		int code = Integer.parseInt(oneLine[0]);
+		String name = oneLine[1];
+		int price = Integer.parseInt(oneLine[2]);
+
+		return new Item(name, code, price);
+
+	}
 }

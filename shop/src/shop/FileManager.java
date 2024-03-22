@@ -67,4 +67,44 @@ public class FileManager {
 			e.printStackTrace();
 		}
 	}
+
+	public String autoLoadUserData() {
+		String loadData = "";
+		try {
+			fr = new FileReader(user);
+			br = new BufferedReader(fr);
+
+			while (br.ready())
+				loadData += br.readLine() + "\n";
+
+			br.close();
+			fr.close();
+			System.out.println("유저 데이터 로드 성공");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("유저 데이터 로드 실패");
+		}
+
+		return loadData;
+	}
+
+	public String autoLoadItemData() {
+		String loadData = "";
+		try {
+			fr = new FileReader(item);
+			br = new BufferedReader(fr);
+
+			while (br.ready())
+				loadData += br.readLine() + "\n";
+
+			br.close();
+			fr.close();
+			System.out.println("아이템 데이터 로드 성공");
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println("아이템 데이터 로드 실패");
+		}
+
+		return loadData;
+	}
 }

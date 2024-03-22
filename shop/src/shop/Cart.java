@@ -94,6 +94,8 @@ public class Cart {
 			Item item = list.get(i);
 			myItems += item.getCode() + "," + item.getName() + "," + item.getPrice() + "," + item.getQuantity() + ","
 					+ item.getBan();
+			if (i < list.size() - 1)
+				myItems += "~";
 		}
 		return myItems;
 	}

@@ -20,6 +20,14 @@ public class Item {
 		this.quantity = quantity;
 	}
 
+	public Item(String name, int code, int price, int quantity, boolean ban) {
+		this.name = name;
+		this.code = code;
+		this.price = price;
+		this.quantity = quantity;
+		this.ban = ban;
+	}
+
 //	public Item(Item item, int quantity) {
 //		this.code = item.getCode();
 //		this.name = item.getName();

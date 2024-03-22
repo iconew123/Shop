@@ -10,7 +10,7 @@ public class UserManager {
 	// list의 첫자리는 admin
 	private UserManager() {
 		if (!fileManager.isExsistUserFile())
-			list.add(new User("ADMIN", "ADMIN", "1q2w3e4r"));
+			list.add(new User("ADMIN", "ADMIN", "1Q2W3E4R"));
 	}
 
 	private static UserManager instance = new UserManager();
@@ -138,4 +138,46 @@ public class UserManager {
 		fileManager.autoSaveUserList(textUser);
 	}
 
+	public void userAutoLoad() {
+		int log = 0;
+		if (fileManager.isExsistUserFile()) {
+			String[] loadData = fileManager.autoLoadUserData().split("\n");
+			for (int i = 0; i < loadData.length; i++) {
+				String[] oneLine = loadData[i].split("/");
+				User user = loadUser(oneLine);
+				list.add(user);
+				if (!oneLine[4].equals("null"))
+					loadMyList(log, oneLine[4]);
+				log++;
+			}
+		} else
+			System.out.println("로드 파일이 없습니다.");
+	}
+
+	private User loadUser(String[] oneLine) {
+		String name = oneLine[0];
+		String id = oneLine[1];
+		String pw = oneLine[2];
+		int money = Integer.parseInt(oneLine[3]);
+
+		return new User(name, id, pw, money);
+	}
+
+	private void loadMyList(int log, String textMyList) {
+		String[] spMyList = textMyList.split("~");
+		for (int i = 0; i < spMyList.length; i++) {
+			String[] oneMyList = spMyList[i].split(",");
+			Item item = loadItem(oneMyList);
+			addMyItem(log, item);
+		}
+	}
+
+	private Item loadItem(String[] oneMyList) {
+		int code = Integer.parseInt(oneMyList[0]);
+		String name = oneMyList[1];
+		int price = Integer.parseInt(oneMyList[2]);
+		int quantity = Integer.parseInt(oneMyList[3]);
+		boolean ban = Boolean.parseBoolean(oneMyList[4]);
+		return new Item(name, code, price, quantity, ban);
+	}
 }

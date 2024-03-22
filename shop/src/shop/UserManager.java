@@ -75,7 +75,7 @@ public class UserManager {
 	public boolean showUserItems(int log) {
 		System.out.printf("=====%s님의 장바구니 목록=====\n", list.get(log).getName());
 		boolean isShow = list.get(log).showMyItems();
-		System.out.println("============================");
+		System.out.println("=============================");
 
 		return isShow;
 	}
@@ -87,6 +87,10 @@ public class UserManager {
 
 	public void removeMyList(int log, int index) {
 		list.get(log).removeMyItem(index);
+	}
+
+	public void changeMyListQuantity(int log, int index, int changeQuantity) {
+		list.get(log).changeQuantity(index, changeQuantity);
 	}
 
 	public void banMyItem(int code) {

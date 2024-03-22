@@ -48,6 +48,10 @@ public class Cart {
 		list.remove(index);
 	}
 
+	public void setMyItemQuantity(int index, int changeQuantity) {
+		list.get(index).setQuantity(changeQuantity);
+	}
+
 	public void banItem(int code) {
 		for (int i = 0; i < list.size(); i++)
 			if (list.get(i).getCode() == code)

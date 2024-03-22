@@ -56,6 +56,10 @@ public class User {
 		cart.removeItem(index);
 	}
 
+	public void changeQuantity(int index, int changeQuantity) {
+		cart.setMyItemQuantity(index, changeQuantity);
+	}
+
 	public void banMyItem(int code) {
 		cart.banItem(code);
 	}

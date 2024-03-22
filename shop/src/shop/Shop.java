@@ -226,7 +226,23 @@ public class Shop {
 	}
 
 	private void fixMyItems() {
+		if (!showMyItems())
+			return;
 
+		int index = userManager.findMyListIndex(this.log, inputNumber("수량을 변경하고 싶은 아이템 코드 입력 : "));
+		if (index == -1) {
+			System.err.println("일치하는 코드가 없습니다.");
+			return;
+		}
+
+		int changeQuantity = inputNumber("변경 하고 싶은 수량 입력 : ");
+		if (changeQuantity < 1) {
+			System.err.println("수량은 1개 이상이여햐합니다.");
+			return;
+		}
+
+		userManager.changeMyListQuantity(this.log, index, changeQuantity);
+		System.out.println("수량변경완료");
 	}
 
 	private void payment() {

@@ -82,10 +82,12 @@ public class ItemManager {
 
 	public void changeName(int index, String changeName) {
 		list.get(index).setName(changeName);
+		
 	}
 
 	public void changePrice(int index, int changePrice) {
 		list.get(index).setPrice(changePrice);
+		
 	}
 
 }

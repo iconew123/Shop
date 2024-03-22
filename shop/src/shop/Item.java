@@ -43,6 +43,6 @@ public class Item {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return String.format("[ %d ]번 아이템 : %s  , 가격 : %d원", this.code , this.name , this.price);
+		return String.format("[ %d ]번 아이템 : %s , 가격 : %d원", this.code , this.name , this.price);
 	}
 }

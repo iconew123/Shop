@@ -251,13 +251,13 @@ public class Shop {
 	private void fixName(int index) {
 		String changeName = inputString("수정 할 아이템명 입력 : ");
 		itemManager.changeName(index, changeName);
-		System.out.println("아이템명 수정완료");
+		System.out.println("아이템명 수정 완료");
 	}
 	
 	private void fixPrice(int index) {
 		int changePrice = inputNumber("수정 할 가격 입력 : ");
 		itemManager.changePrice(index, changePrice);
-		System.out.println("아이템가격 수정완료");
+		System.out.println("아이템가격 수정 완료");
 	}
 
 	public void run() {

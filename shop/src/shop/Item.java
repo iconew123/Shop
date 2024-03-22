@@ -73,4 +73,10 @@ public class Item {
 		// TODO Auto-generated method stub
 		return String.format("[ %d ]번 아이템 : %s , 가격 : %d원", this.code, this.name, this.price);
 	}
+
+	public String oneItemInfo() {
+		String oneItem = "";
+		oneItem += this.code + "/" + this.name + "/" + this.price;
+		return oneItem;
+	}
 }

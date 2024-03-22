@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ItemManager {
 
 	private static ArrayList<Item> list = new ArrayList<Item>();
+	private FileManager fileManager = FileManager.getInstance();
 
 	private ItemManager() {
 
@@ -95,6 +96,16 @@ public class ItemManager {
 	public void changePrice(int index, int changePrice) {
 		list.get(index).setPrice(changePrice);
 
+	}
+
+	public void itemAutoSave() {
+		String textItem = "";
+		for (int i = 0; i < list.size(); i++) {
+			textItem += list.get(i).oneItemInfo();
+			if (i < list.size() - 1)
+				textItem += "\n";
+		}
+		fileManager.autoSaveItemList(textItem);
 	}
 
 }

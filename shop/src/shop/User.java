@@ -80,4 +80,14 @@ public class User {
 	public void fixMyItemPrice(int code, int price) {
 		cart.fixPrice(code, price);
 	}
+
+	public String oneUserInfo() {
+		String oneUser = "";
+		oneUser += this.name + "/" + this.id + "/" + this.password + "/" + this.money + "/";
+		if (cart.getSize() == 0)
+			oneUser += "null";
+		else
+			oneUser += cart.saveMyItems();
+		return oneUser;
+	}
 }

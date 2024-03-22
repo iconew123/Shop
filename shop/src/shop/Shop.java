@@ -378,11 +378,22 @@ public class Shop {
 		System.out.println("아이템가격 수정 완료");
 	}
 
+	private void autoLoad() {
+
+	}
+
+	private void autoSave() {
+		userManager.userAutoSave();
+		itemManager.itemAutoSave();
+	}
+
 	public void run() {
+		autoLoad();
 		while (isRun()) {
 			showMenu();
 			this.sel = inputNumber("기능 선택 : ");
 			choice(sel);
+			autoSave();
 		}
 	}
 }

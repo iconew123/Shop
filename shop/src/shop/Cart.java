@@ -9,6 +9,10 @@ public class Cart {
 		list = new ArrayList<Item>();
 	}
 
+	public int getSize() {
+		return list.size();
+	}
+
 	public int findMyItem(int code) {
 		int index = -1;
 		for (int i = 0; i < list.size(); i++)
@@ -82,5 +86,15 @@ public class Cart {
 		for (int i = 0; i < list.size(); i++)
 			if (list.get(i).getCode() == code)
 				list.get(i).setPrice(changePrice);
+	}
+
+	public String saveMyItems() {
+		String myItems = "";
+		for (int i = 0; i < list.size(); i++) {
+			Item item = list.get(i);
+			myItems += item.getCode() + "," + item.getName() + "," + item.getPrice() + "," + item.getQuantity() + ","
+					+ item.getBan();
+		}
+		return myItems;
 	}
 }

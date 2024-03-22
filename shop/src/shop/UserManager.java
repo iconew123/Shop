@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class UserManager {
 
 	private static ArrayList<User> list = new ArrayList<User>();
+	private FileManager fileManager = FileManager.getInstance();
 
 	// list의 첫자리는 admin
 	private UserManager() {
-		list.add(new User("ADMIN", "ADMIN", "1q2w3e4r"));
+		if (!fileManager.isExsistUserFile())
+			list.add(new User("ADMIN", "ADMIN", "1q2w3e4r"));
 	}
 
 	private static UserManager instance = new UserManager();
@@ -124,6 +126,16 @@ public class UserManager {
 	public void buyItems(int log, int money) {
 		setMoney(log, money);
 		list.get(log).removeAllMyList();
+	}
+
+	public void userAutoSave() {
+		String textUser = "";
+		for (int i = 0; i < list.size(); i++) {
+			textUser += list.get(i).oneUserInfo();
+			if (i < list.size() - 1)
+				textUser += "\n";
+		}
+		fileManager.autoSaveUserList(textUser);
 	}
 
 }

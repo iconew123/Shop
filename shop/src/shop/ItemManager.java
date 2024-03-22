@@ -56,6 +56,13 @@ public class ItemManager {
 	public void printOneItems(int index) {
 		System.out.println(list.get(index));
 	}
+	
+	public Item buyItem(int index , int quantity) {
+		Item tmpItem = list.get(index);
+		tmpItem.setQuantity(quantity);
+		
+		return tmpItem.clone();
+	}
 
 	public boolean addItem(String name, int code, int price) {
 

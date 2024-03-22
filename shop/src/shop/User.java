@@ -1,7 +1,5 @@
 package shop;
 
-import java.util.ArrayList;
-
 public class User {
 	private String name;
 	private String id;
@@ -35,5 +33,9 @@ public class User {
 
 	public void setMoney(int money) {
 		this.money = money;
+	}
+	
+	public void setCart(Item buyItem) {
+		cart.addmyItem(buyItem);
 	}
 }

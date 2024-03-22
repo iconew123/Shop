@@ -67,5 +67,9 @@ public class UserManager {
 
 		return index;
 	}
+	
+	public void addMyItem(int log , Item buyItem) {
+		list.get(log).setCart(buyItem);
+	}
 
 }

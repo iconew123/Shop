@@ -155,7 +155,30 @@ public class Shop {
 	}
 
 	private void shopping() {
-
+		while(true) {
+			itemManager.printAllItems();
+			
+			String name = inputString("구매할 아이템 명 입력 (쇼핑종료 exit입력) : ");
+			if(name.equals("exit")) {
+				System.out.println("메인메뉴 이동");
+				return;
+			}
+			
+			int index = itemManager.findDuplName(name);
+			if(index == -1) {
+				System.err.println("해당 아이템은 존재하지않습니다.");
+				continue;
+			}
+			
+			int quantity = inputNumber("구매 수량 입력 : ");
+			if(quantity < 1) {
+				System.err.println("구매수량은 1개이상 입력해주세요.");
+				continue;
+			}
+			
+			Item buyItem = itemManager.buyItem(index, quantity);
+			userManager.addMyItem(this.log,buyItem);
+		}
 	}
 
 	private void myPage() {

@@ -11,7 +11,21 @@ public class Item {
 		this.code = code;
 		this.price = price;
 	}
-
+	
+	public Item(String name, int code, int price, int quantity) {
+		this.name = name;
+		this.code = code;
+		this.price = price;
+		this.quantity = quantity;
+	}
+	
+//	public Item(Item item, int quantity) {
+//		this.code = item.getCode();
+//		this.name = item.getName();
+//		this.price = item.getPrice();
+//		this.quantity = quantity;
+//	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -38,6 +52,11 @@ public class Item {
 	
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public Item clone() {
+		Item item = new Item(this.name, this.code, this.price, this.quantity);
+		return item;
 	}
 	
 	@Override

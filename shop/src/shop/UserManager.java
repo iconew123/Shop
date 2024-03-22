@@ -72,10 +72,10 @@ public class UserManager {
 		list.get(log).setCart(buyItem);
 	}
 
-	public boolean showUserItems(int log) {
-		System.out.printf("=====%s님의 장바구니 목록=====\n", list.get(log).getName());
+	public boolean showUserItems(int log, String message) {
+		System.out.printf("===================%s님의 %s 목록===================\n", list.get(log).getName(), message);
 		boolean isShow = list.get(log).showMyItems();
-		System.out.println("=============================");
+		System.out.println("=======================================================");
 
 		return isShow;
 	}
@@ -93,6 +93,11 @@ public class UserManager {
 		list.get(log).changeQuantity(index, changeQuantity);
 	}
 
+	public int sumMyList(int log) {
+		int sum = list.get(log).sumMyItems();
+		return sum;
+	}
+
 	public void banMyItem(int code) {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).banMyItem(code);
@@ -106,6 +111,15 @@ public class UserManager {
 	public void fixMyItemPrice(int code, int changePrice) {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).fixMyItemPrice(code, changePrice);
+	}
+
+	public int getUserMoney(int log) {
+		return list.get(log).getMoney();
+	}
+
+	public void buyItems(int log, int money) {
+		list.get(log).setMoney(money);
+		list.get(log).removeAllMyList();
 	}
 
 }

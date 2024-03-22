@@ -60,6 +60,15 @@ public class User {
 		cart.setMyItemQuantity(index, changeQuantity);
 	}
 
+	public int sumMyItems() {
+		int sum = cart.sumItmePrice();
+		return sum;
+	}
+
+	public void removeAllMyList() {
+		cart.removeAllItems();
+	}
+
 	public void banMyItem(int code) {
 		cart.banItem(code);
 	}

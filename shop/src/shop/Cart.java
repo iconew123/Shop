@@ -35,7 +35,7 @@ public class Cart {
 
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getBan())
-				System.err.printf(list.get(i) + "\t총 수량 : %d개\n", list.get(i).getQuantity());
+				System.err.printf("[구매 불가] >> " + list.get(i) + "\t총 수량 : %d개\n", list.get(i).getQuantity());
 			else
 				System.out.printf(list.get(i) + "\t총 수량 : %d개\n", list.get(i).getQuantity());
 
@@ -48,8 +48,22 @@ public class Cart {
 		list.remove(index);
 	}
 
+	public void removeAllItems() {
+		list.removeAll(list);
+	}
+
 	public void setMyItemQuantity(int index, int changeQuantity) {
 		list.get(index).setQuantity(changeQuantity);
+	}
+
+	public int sumItmePrice() {
+		int sum = 0;
+		for (int i = 0; i < list.size(); i++) {
+			Item oneItem = list.get(i);
+			if (!oneItem.getBan())
+				sum += oneItem.getPrice() * oneItem.getQuantity();
+		}
+		return sum;
 	}
 
 	public void banItem(int code) {

@@ -195,7 +195,7 @@ public class Shop {
 		int pageSel = inputNumber(">> ");
 
 		if (pageSel == SHOW_MY_JANG)
-			showMyItems();
+			showMyItems("장바구니");
 		else if (pageSel == DELET_MY_JANG)
 			deleteMyItems();
 		else if (pageSel == FIX_MY_JANG)
@@ -206,13 +206,13 @@ public class Shop {
 			System.err.println("없는기능");
 	}
 
-	private boolean showMyItems() {
-		boolean isempty = userManager.showUserItems(this.log);
+	private boolean showMyItems(String message) {
+		boolean isempty = userManager.showUserItems(this.log, message);
 		return isempty;
 	}
 
 	private void deleteMyItems() {
-		if (!showMyItems())
+		if (!showMyItems("장바구니"))
 			return;
 
 		int index = userManager.findMyListIndex(this.log, inputNumber("삭제하고 싶은 아이템 코드 입력 : "));
@@ -226,7 +226,7 @@ public class Shop {
 	}
 
 	private void fixMyItems() {
-		if (!showMyItems())
+		if (!showMyItems("장바구니"))
 			return;
 
 		int index = userManager.findMyListIndex(this.log, inputNumber("수량을 변경하고 싶은 아이템 코드 입력 : "));
@@ -246,6 +246,21 @@ public class Shop {
 	}
 
 	private void payment() {
+		if (!showMyItems("영수증"))
+			return;
+		int sum = userManager.sumMyList(this.log);
+		int myMoney = userManager.getUserMoney(this.log);
+		if (sum == 0) {
+			System.err.println("결제가능한 아이템이 없습니다.");
+			return;
+		} else if (myMoney < sum) {
+			System.err.println("보유 현금이 부족합니다. 마이페이지에서 충전 후 이용해주세요.");
+			return;
+		}
+
+		userManager.buyItems(this.log, myMoney - sum);
+		this.total += sum;
+		System.out.println("구매완료");
 
 	}
 

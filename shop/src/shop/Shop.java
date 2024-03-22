@@ -181,7 +181,45 @@ public class Shop {
 		}
 	}
 
+	private final int SHOW_MY_JANG = 1;
+	private final int DELET_MY_JANG = 2;
+	private final int FIX_MY_JANG = 3;
+	private final int PAYMENT = 4;
+
 	private void myPage() {
+		System.out.println("[1] 내 장바구니");
+		System.out.println("[2] 항목 삭제");
+		System.out.println("[3] 수량 수정");
+		System.out.println("[4] 결제");
+
+		int pageSel = inputNumber(">> ");
+
+		if (pageSel == SHOW_MY_JANG)
+			showMyItems();
+		else if (pageSel == DELET_MY_JANG)
+			deleteMyItems();
+		else if (pageSel == FIX_MY_JANG)
+			fixMyItems();
+		else if (pageSel == PAYMENT)
+			payment();
+		else
+			System.err.println("없는기능");
+	}
+
+	private boolean showMyItems() {
+		boolean isempty = userManager.showUserItems(this.log);
+		return isempty;
+	}
+
+	private void deleteMyItems() {
+
+	}
+
+	private void fixMyItems() {
+
+	}
+
+	private void payment() {
 
 	}
 

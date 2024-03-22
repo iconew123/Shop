@@ -72,6 +72,14 @@ public class UserManager {
 		list.get(log).setCart(buyItem);
 	}
 
+	public boolean showUserItems(int log) {
+		System.out.printf("=====%s님의 장바구니 목록=====\n", list.get(log).getName());
+		boolean isShow = list.get(log).showMyItems();
+		System.out.println("============================");
+
+		return isShow;
+	}
+
 	public void banMyItem(int code) {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).banMyItem(code);

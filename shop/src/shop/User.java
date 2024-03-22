@@ -39,6 +39,14 @@ public class User {
 		cart.addmyItem(buyItem);
 	}
 
+	public boolean showMyItems() {
+		if (!cart.showItems()) {
+			System.err.println("장바구니가 비었습니다.");
+			return false;
+		}
+		return true;
+	}
+
 	public void banMyItem(int code) {
 		cart.banItem(code);
 	}

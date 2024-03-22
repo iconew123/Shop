@@ -29,6 +29,21 @@ public class Cart {
 		}
 	}
 
+	public boolean showItems() {
+		if (list.size() == 0)
+			return false;
+
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getBan())
+				System.err.printf(list.get(i) + "\t총 수량 : %d개\n", list.get(i).getQuantity());
+			else
+				System.out.printf(list.get(i) + "\t총 수량 : %d개\n", list.get(i).getQuantity());
+
+		}
+
+		return true;
+	}
+
 	public void banItem(int code) {
 		for (int i = 0; i < list.size(); i++)
 			if (list.get(i).getCode() == code)

@@ -98,8 +98,9 @@ public class ItemManager {
 
 	}
 
-	public void itemAutoSave() {
+	public void itemAutoSave(int total) {
 		String textItem = "";
+		textItem += total + "\n";
 		for (int i = 0; i < list.size(); i++) {
 			textItem += list.get(i).oneItemInfo();
 			if (i < list.size() - 1)
@@ -108,17 +109,19 @@ public class ItemManager {
 		fileManager.autoSaveItemList(textItem);
 	}
 
-	public void itemAutoLoad() {
+	public int itemAutoLoad() {
 		if (fileManager.isExsistItemFile()) {
 			String[] loadData = fileManager.autoLoadItemData().split("\n");
-			for (int i = 0; i < loadData.length; i++) {
+			for (int i = 1; i < loadData.length; i++) {
 				String[] oneLine = loadData[i].split("/");
 				Item item = loadItem(oneLine);
 				list.add(item);
 			}
-
-		} else
+			return Integer.parseInt(loadData[0]);
+		} else {
 			System.out.println("로드 파일이 없습니다.");
+			return 0;
+		}
 	}
 
 	private Item loadItem(String[] oneLine) {

@@ -380,12 +380,12 @@ public class Shop {
 
 	private void autoLoad() {
 		userManager.userAutoLoad();
-		itemManager.itemAutoLoad();
+		this.total = itemManager.itemAutoLoad();
 	}
 
 	private void autoSave() {
 		userManager.userAutoSave();
-		itemManager.itemAutoSave();
+		itemManager.itemAutoSave(this.total);
 	}
 
 	public void run() {

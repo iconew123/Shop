@@ -225,11 +225,12 @@ public class Shop {
 
 	private void deleteItem() {
 		itemManager.printAllItems();
-		String name = inputString("삭제할명 입력 : ");
+		int code = inputNumber("삭제할 아이템 코드 입력 : ");
 
-		if (itemManager.deleteItem(name))
+		if (itemManager.deleteItem(code)) {
+			userManager.banMyItem(code);
 			System.out.println("아이템 삭제 성공");
-		else
+		} else
 			System.err.println("아이템 삭제 실패");
 
 	}

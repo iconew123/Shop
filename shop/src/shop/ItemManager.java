@@ -75,8 +75,8 @@ public class ItemManager {
 		return true;
 	}
 
-	public boolean deleteItem(String name) {
-		int index = findDuplName(name);
+	public boolean deleteItem(int code) {
+		int index = findDuplCode(code);
 
 		if (index == -1) {
 			System.err.println("일치하는 아이템이 없습니다.");

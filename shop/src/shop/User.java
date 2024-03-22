@@ -39,6 +39,10 @@ public class User {
 		cart.addmyItem(buyItem);
 	}
 
+	public void banMyItem(int code) {
+		cart.banItem(code);
+	}
+
 	public void fixMyItemName(int code, String name) {
 		cart.fixName(code, name);
 	}

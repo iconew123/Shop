@@ -29,6 +29,12 @@ public class Cart {
 		}
 	}
 
+	public void banItem(int code) {
+		for (int i = 0; i < list.size(); i++)
+			if (list.get(i).getCode() == code)
+				list.get(i).setBan();
+	}
+
 	public void fixName(int code, String changeName) {
 		for (int i = 0; i < list.size(); i++)
 			if (list.get(i).getCode() == code)

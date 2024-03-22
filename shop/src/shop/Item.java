@@ -5,6 +5,7 @@ public class Item {
 	private String name;
 	private int price;
 	private int quantity;
+	private boolean ban;
 
 	public Item(String name, int code, int price) {
 		this.name = name;
@@ -52,6 +53,14 @@ public class Item {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	public boolean getBan() {
+		return this.ban;
+	}
+
+	public void setBan() {
+		this.ban = !this.ban;
 	}
 
 	public Item clone() {

@@ -72,14 +72,19 @@ public class UserManager {
 		list.get(log).setCart(buyItem);
 	}
 
-	public void fixMyItemName(int code, String name) {
+	public void banMyItem(int code) {
 		for (int i = 0; i < list.size(); i++)
-			list.get(i).fixMyItemName(code, name);
+			list.get(i).banMyItem(code);
 	}
 
-	public void fixMyItemPrice(int code, int price) {
+	public void fixMyItemName(int code, String changeName) {
 		for (int i = 0; i < list.size(); i++)
-			list.get(i).fixMyItemPrice(code, price);
+			list.get(i).fixMyItemName(code, changeName);
+	}
+
+	public void fixMyItemPrice(int code, int changePrice) {
+		for (int i = 0; i < list.size(); i++)
+			list.get(i).fixMyItemPrice(code, changePrice);
 	}
 
 }

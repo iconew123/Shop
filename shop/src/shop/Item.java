@@ -4,7 +4,7 @@ public class Item {
 	private int code;
 	private String name;
 	private int price;
-	private int number;
+	private int quantity;
 
 	public Item(String name, int code, int price) {
 		this.name = name;
@@ -32,12 +32,12 @@ public class Item {
 		this.price = price;
 	}
 	
-	public int getNumber() {
-		return this.number;
+	public int getQuantity() {
+		return this.quantity;
 	}
 	
-	public void setNumber(int number) {
-		this.number = number;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	
 	@Override

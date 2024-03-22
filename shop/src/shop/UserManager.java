@@ -16,7 +16,7 @@ public class UserManager {
 	public static UserManager getInstance() {
 		return instance;
 	}
-	
+
 	public String showName(int log) {
 		return list.get(log).getName();
 	}
@@ -67,9 +67,19 @@ public class UserManager {
 
 		return index;
 	}
-	
-	public void addMyItem(int log , Item buyItem) {
+
+	public void addMyItem(int log, Item buyItem) {
 		list.get(log).setCart(buyItem);
+	}
+
+	public void fixMyItemName(int code, String name) {
+		for (int i = 0; i < list.size(); i++)
+			list.get(i).fixMyItemName(code, name);
+	}
+
+	public void fixMyItemPrice(int code, int price) {
+		for (int i = 0; i < list.size(); i++)
+			list.get(i).fixMyItemPrice(code, price);
 	}
 
 }

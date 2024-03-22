@@ -56,11 +56,11 @@ public class ItemManager {
 	public void printOneItems(int index) {
 		System.out.println(list.get(index));
 	}
-	
-	public Item buyItem(int index , int quantity) {
+
+	public Item buyItem(int index, int quantity) {
 		Item tmpItem = list.get(index);
 		tmpItem.setQuantity(quantity);
-		
+
 		return tmpItem.clone();
 	}
 
@@ -89,12 +89,12 @@ public class ItemManager {
 
 	public void changeName(int index, String changeName) {
 		list.get(index).setName(changeName);
-		
+
 	}
 
 	public void changePrice(int index, int changePrice) {
 		list.get(index).setPrice(changePrice);
-		
+
 	}
 
 }

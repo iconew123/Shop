@@ -26,7 +26,7 @@ public class Shop {
 	private final int ADMIN_DELETE_ITEM = 2;
 	private final int ADMIN_FIX_ITEM = 3;
 	private final int ADMIN_SEARCH = 4;
-	
+
 	private final int ITEM_NAME_FIX = 1;
 	private final int ITEM_PRICE_FIX = 2;
 	private final int ITEM_SAVE_FIX = 3;
@@ -155,29 +155,29 @@ public class Shop {
 	}
 
 	private void shopping() {
-		while(true) {
+		while (true) {
 			itemManager.printAllItems();
-			
+
 			String name = inputString("구매할 아이템 명 입력 (쇼핑종료 exit입력) : ");
-			if(name.equals("exit")) {
+			if (name.equals("exit")) {
 				System.out.println("메인메뉴 이동");
 				return;
 			}
-			
+
 			int index = itemManager.findDuplName(name);
-			if(index == -1) {
+			if (index == -1) {
 				System.err.println("해당 아이템은 존재하지않습니다.");
 				continue;
 			}
-			
+
 			int quantity = inputNumber("구매 수량 입력 : ");
-			if(quantity < 1) {
+			if (quantity < 1) {
 				System.err.println("구매수량은 1개이상 입력해주세요.");
 				continue;
 			}
-			
+
 			Item buyItem = itemManager.buyItem(index, quantity);
-			userManager.addMyItem(this.log,buyItem);
+			userManager.addMyItem(this.log, buyItem);
 		}
 	}
 
@@ -238,48 +238,49 @@ public class Shop {
 		itemManager.printAllItems();
 		int code = inputNumber("수정하고 싶은 아이템 코드 입력 : ");
 		int index = itemManager.findDuplCode(code);
-		
-		if(index == -1) {
+
+		if (index == -1) {
 			System.err.println("아이템 코드가 일치하지 않습니다.");
 			return;
 		}
-		
-		while(true) {
+
+		while (true) {
 			showFixMenu();
 			int fixSel = inputNumber("수정 할 항목 선택 : ");
-			
-			if(fixSel == ITEM_NAME_FIX)
-				fixName(index);
-			else if(fixSel == ITEM_PRICE_FIX)
-				fixPrice(index);
-			else if(fixSel == ITEM_SAVE_FIX)
+
+			if (fixSel == ITEM_NAME_FIX)
+				fixName(code, index);
+			else if (fixSel == ITEM_PRICE_FIX)
+				fixPrice(code, index);
+			else if (fixSel == ITEM_SAVE_FIX)
 				break;
 			else
 				System.err.println("없는 기능입니다.");
 		}
-		
-		
+
 	}
-	
+
 	private void printTotalSel() {
 		System.out.printf("%s의 총 매출액 : %d원입니다.\n", this.name, this.total);
 	}
-	
+
 	private void showFixMenu() {
 		System.out.println("[1] 아이템 명 수정");
 		System.out.println("[2] 아이템 가격 수정");
 		System.out.println("[3] 수정 저장 후 나가기");
 	}
-	
-	private void fixName(int index) {
+
+	private void fixName(int code, int index) {
 		String changeName = inputString("수정 할 아이템명 입력 : ");
 		itemManager.changeName(index, changeName);
+		userManager.fixMyItemName(code, changeName);
 		System.out.println("아이템명 수정 완료");
 	}
-	
-	private void fixPrice(int index) {
+
+	private void fixPrice(int code, int index) {
 		int changePrice = inputNumber("수정 할 가격 입력 : ");
 		itemManager.changePrice(index, changePrice);
+		userManager.fixMyItemPrice(code, changePrice);
 		System.out.println("아이템가격 수정 완료");
 	}
 

@@ -34,8 +34,16 @@ public class User {
 	public void setMoney(int money) {
 		this.money = money;
 	}
-	
+
 	public void setCart(Item buyItem) {
 		cart.addmyItem(buyItem);
+	}
+
+	public void fixMyItemName(int code, String name) {
+		cart.fixName(code, name);
+	}
+
+	public void fixMyItemPrice(int code, int price) {
+		cart.fixPrice(code, price);
 	}
 }

@@ -1,9 +1,11 @@
 package shop;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Shop {
 	private Scanner scan = new Scanner(System.in);
+	private Random random = new Random();
 
 	private UserManager userManager = UserManager.getInstance();
 	private ItemManager itemManager = ItemManager.getInstance();
@@ -19,6 +21,15 @@ public class Shop {
 	private final int MYPAGE = 6;
 	private final int ADMIN = 7;
 	private final int END = 0;
+
+	private final int ADMIN_ADD_ITEM = 1;
+	private final int ADMIN_DELETE_ITEM = 2;
+	private final int ADMIN_FIX_ITEM = 3;
+	private final int ADMIN_SEARCH = 4;
+	
+	private final int ITEM_NAME_FIX = 1;
+	private final int ITEM_PRICE_FIX = 2;
+	private final int ITEM_SAVE_FIX = 3;
 
 	private String name;
 	private int sel;
@@ -57,7 +68,7 @@ public class Shop {
 	}
 
 	private void showMenu() {
-		
+
 		System.out.println(log != -1 ? String.format(userManager.showName(log) + "님 로그인 중...") : "로그인이 필요합니다!!");
 		System.out.printf("[ %s ]\n", this.name);
 		System.out.println("[1] 회원가입");
@@ -96,8 +107,8 @@ public class Shop {
 			shopping();
 		else if (sel == MYPAGE && checkLogValue(TYPE_IN))
 			myPage();
-//		else if (sel == ADMIN && checkLogValue(TYPE_IN))
-//			showAdminMenu();
+		else if (sel == ADMIN && checkLogValue(TYPE_IN))
+			showAdminMenu();
 		else if (sel == END)
 			System.out.println("프로그램 종료");
 	}
@@ -144,11 +155,109 @@ public class Shop {
 	}
 
 	private void shopping() {
-		
+
 	}
 
 	private void myPage() {
 
+	}
+
+	private void showAdminMenu() {
+		System.out.println("[1] 아이템 등록");
+		System.out.println("[2] 아이템 삭제");
+		System.out.println("[3] 아이템 수정");
+		System.out.println("[4] 조회");
+
+		int adminSel = inputNumber(">> ");
+
+		if (adminSel == ADMIN_ADD_ITEM)
+			addItem();
+		else if (adminSel == ADMIN_DELETE_ITEM)
+			deleteItem();
+		else if (adminSel == ADMIN_FIX_ITEM)
+			fixItem();
+		else if (adminSel == ADMIN_SEARCH)
+			printTotalSel();
+		else
+			System.err.println("없는기능");
+	}
+
+	private void addItem() {
+		String name = inputString("아이템 명 입력 : ");
+		int price = inputNumber("아이템 가격 입력 : ");
+		int code = 0;
+		while (true) {
+			code = random.nextInt(9000) + 1000;
+
+			if (itemManager.findDuplCode(code) == -1)
+				break;
+		}
+
+		if (itemManager.addItem(name, code, price))
+			System.out.println("아이템 등록 성공");
+		else
+			System.err.println("아이템 등록 실패");
+
+	}
+
+	private void deleteItem() {
+		itemManager.printAllItems();
+		String name = inputString("삭제할명 입력 : ");
+
+		if (itemManager.deleteItem(name))
+			System.out.println("아이템 삭제 성공");
+		else
+			System.err.println("아이템 삭제 실패");
+
+	}
+
+	private void fixItem() {
+		itemManager.printAllItems();
+		int code = inputNumber("수정하고 싶은 아이템 코드 입력 : ");
+		int index = itemManager.findDuplCode(code);
+		
+		if(index == -1) {
+			System.err.println("아이템 코드가 일치하지 않습니다.");
+			return;
+		}
+		
+		while(true) {
+			showFixMenu();
+			int fixSel = inputNumber("수정 할 항목 선택 : ");
+			
+			if(fixSel == ITEM_NAME_FIX)
+				fixName(index);
+			else if(fixSel == ITEM_PRICE_FIX)
+				fixPrice(index);
+			else if(fixSel == ITEM_SAVE_FIX)
+				break;
+			else
+				System.err.println("없는 기능입니다.");
+		}
+		
+		
+	}
+	
+	private void printTotalSel() {
+		System.out.printf("%s의 총 매출액 : %d원입니다.\n", this.name, this.total);
+	}
+	
+	private void showFixMenu() {
+		System.out.println("[1] 아이템 명 수정");
+		System.out.println("[2] 아이템 가격 수정");
+		System.out.println("[3] 수정 저장 후 나가기");
+	}
+	
+	private void fixName(int index) {
+		String changeName = inputString("수정 할 아이템명 입력 : ");
+		itemManager.changeName(index, changeName);
+		System.out.println("아이템명 수정완료");
+	}
+	
+	private void fixPrice(int index) {
+		int changePrice = inputNumber("수정 할 가격 입력 : ");
+		itemManager.changePrice(index, changePrice);
+		System.out.println("아이템가격 수정완료");
 	}
 
 	public void run() {

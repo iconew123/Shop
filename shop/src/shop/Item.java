@@ -1,8 +1,8 @@
 package shop;
 
 public class Item {
-	private String name;
 	private int code;
+	private String name;
 	private int price;
 	private int number;
 
@@ -38,5 +38,11 @@ public class Item {
 	
 	public void setNumber(int number) {
 		this.number = number;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("[ %d ]번 아이템 : %s  , 가격 : %d원", this.code , this.name , this.price);
 	}
 }

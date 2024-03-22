@@ -9,7 +9,7 @@ public class Cart {
 		list = new ArrayList<Item>();
 	}
 
-	private int findMyItem(int code) {
+	public int findMyItem(int code) {
 		int index = -1;
 		for (int i = 0; i < list.size(); i++)
 			if (list.get(i).getCode() == code)
@@ -42,6 +42,10 @@ public class Cart {
 		}
 
 		return true;
+	}
+
+	public void removeItem(int index) {
+		list.remove(index);
 	}
 
 	public void banItem(int code) {

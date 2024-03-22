@@ -47,6 +47,15 @@ public class User {
 		return true;
 	}
 
+	public int findCodeIndex(int code) {
+		int index = cart.findMyItem(code);
+		return index;
+	}
+
+	public void removeMyItem(int index) {
+		cart.removeItem(index);
+	}
+
 	public void banMyItem(int code) {
 		cart.banItem(code);
 	}

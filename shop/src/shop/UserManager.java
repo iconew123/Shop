@@ -80,6 +80,15 @@ public class UserManager {
 		return isShow;
 	}
 
+	public int findMyListIndex(int log, int code) {
+		int index = list.get(log).findCodeIndex(code);
+		return index;
+	}
+
+	public void removeMyList(int log, int index) {
+		list.get(log).removeMyItem(index);
+	}
+
 	public void banMyItem(int code) {
 		for (int i = 0; i < list.size(); i++)
 			list.get(i).banMyItem(code);

@@ -212,6 +212,16 @@ public class Shop {
 	}
 
 	private void deleteMyItems() {
+		if (!showMyItems())
+			return;
+
+		int index = userManager.findMyListIndex(this.log, inputNumber("삭제하고 싶은 아이템 코드 입력 : "));
+		if (index == -1) {
+			System.err.println("일치하는 코드가 없습니다.");
+			return;
+		}
+		userManager.removeMyList(this.log, index);
+		System.out.println("삭제완료");
 
 	}
 

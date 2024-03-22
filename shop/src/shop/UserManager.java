@@ -117,8 +117,12 @@ public class UserManager {
 		return list.get(log).getMoney();
 	}
 
-	public void buyItems(int log, int money) {
+	public void setMoney(int log, int money) {
 		list.get(log).setMoney(money);
+	}
+
+	public void buyItems(int log, int money) {
+		setMoney(log, money);
 		list.get(log).removeAllMyList();
 	}
 

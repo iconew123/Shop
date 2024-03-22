@@ -31,6 +31,12 @@ public class Shop {
 	private final int ITEM_PRICE_FIX = 2;
 	private final int ITEM_SAVE_FIX = 3;
 
+	private final int SHOW_MY_JANG = 1;
+	private final int DELET_MY_JANG = 2;
+	private final int FIX_MY_JANG = 3;
+	private final int PAYMENT = 4;
+	private final int CHARGE_MONEY = 5;
+
 	private String name;
 	private int sel;
 	private int log;
@@ -181,16 +187,12 @@ public class Shop {
 		}
 	}
 
-	private final int SHOW_MY_JANG = 1;
-	private final int DELET_MY_JANG = 2;
-	private final int FIX_MY_JANG = 3;
-	private final int PAYMENT = 4;
-
 	private void myPage() {
 		System.out.println("[1] 내 장바구니");
 		System.out.println("[2] 항목 삭제");
 		System.out.println("[3] 수량 수정");
 		System.out.println("[4] 결제");
+		System.out.println("[5] 충전하기");
 
 		int pageSel = inputNumber(">> ");
 
@@ -202,6 +204,8 @@ public class Shop {
 			fixMyItems();
 		else if (pageSel == PAYMENT)
 			payment();
+		else if (pageSel == CHARGE_MONEY)
+			charge();
 		else
 			System.err.println("없는기능");
 	}
@@ -254,7 +258,7 @@ public class Shop {
 			System.err.println("결제가능한 아이템이 없습니다.");
 			return;
 		} else if (myMoney < sum) {
-			System.err.println("보유 현금이 부족합니다. 마이페이지에서 충전 후 이용해주세요.");
+			System.err.printf("보유 현금이 %d원 부족합니다. 마이페이지에서 충전 후 이용해주세요.\n", (-1) * (myMoney - sum));
 			return;
 		}
 
@@ -262,6 +266,16 @@ public class Shop {
 		this.total += sum;
 		System.out.println("구매완료");
 
+	}
+
+	private void charge() {
+		int chargeMoney = inputNumber("입금할 금액 입력 : ");
+		if (chargeMoney < 1) {
+			System.err.println("1원 이상 입금가능");
+			return;
+		}
+		userManager.setMoney(this.log, chargeMoney);
+		System.out.println("충전 완료");
 	}
 
 	private void showAdminMenu() {

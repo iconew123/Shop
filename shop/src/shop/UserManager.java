@@ -120,7 +120,8 @@ public class UserManager {
 	}
 
 	public void setMoney(int log, int money) {
-		list.get(log).setMoney(money);
+		int curMoney = list.get(log).getMoney();
+		list.get(log).setMoney(curMoney + money);
 	}
 
 	public void buyItems(int log, int money) {
